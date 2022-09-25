@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { OverlayModal } from "./components/OverlayModal/OverlayModal";
+import './App.css'
+import { ContentModal } from "./components/ContentModal/ContentModal";
 
 function App() {
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <button
+          onClick={() => setIsOpenModal(true)}
+        >Open modal</button>
+
+        {
+          isOpenModal && 
+          <OverlayModal closeModal={setIsOpenModal}>
+            <ContentModal />
+          </OverlayModal>
+        }
     </div>
   );
 }
 
-export default App;
+  export default App;
